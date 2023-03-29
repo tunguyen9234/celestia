@@ -83,10 +83,50 @@ sudo systemctl restart celestia-light
 sudo journalctl -u celestia-light -f -o cat
 systemctl status celestia-light.service
 ````
+# option check node uptime
+````
+echo "export PUB_IP=$(curl -s ifconfig.me)" >> $HOME/.bash_profile
+echo "export AUTH_TOKEN=$(celestia $CEL_NODETYPE auth admin --p2p.network $CEL_CHAINNAME)" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+# Check your IP
+echo $PUB_IP 
+# Check authen token
+echo $AUTH_TOKEN
+
+curl -X POST \
+     -H "Authorization: Bearer $AUTH_TOKEN" \
+     -H 'Content-Type: application/json' \
+     -d '{"jsonrpc":"2.0","id":0,"method":"p2p.Info","params":[]}' \
+     http://localhost:26658
+
+echo "export CEL_NODEID=12D3xxxxxxxxxxxxxxxxxxxxxx" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+#check nodeID
+echo $CEL_NODEID
+
+#check uptime node
+curl -s https://leaderboard.celestia.tools/api/v1/nodes/$CEL_NODEID  | jq
+````
 # delete node
 ````
 sudo systemctl stop celestia-lightd && sudo systemctl disable celestia-lightd
 rm -rf /etc/systemd/system/celestia-lightd.service 
 rm -rf /root/celestia-node/
 rm -rf /root/.celestia-light-blockspacerace-0/
+````
+# upgrade
+````
+cd $HOME 
+sudo systemctl stop celestia-light
+rm -rf celestia-node 
+git clone https://github.com/celestiaorg/celestia-node.git 
+cd celestia-node/ 
+git checkout tags/v0.8.0
+make build 
+make install 
+celestia version
+celestia $CEL_NODETYPE init --p2p.network $CEL_CHAINNAME
+sudo systemctl restart celestia-light
+sudo journalctl -u celestia-light -f -o cat
+systemctl status celestia-light.service
 ````
