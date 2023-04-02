@@ -6,7 +6,9 @@ npm install telegraf nodemon axios start --save
 ```
 # Add Telegram bot
 - Using [@BotFather](https://t.me/BotFather) to create your BOT, pay attention to HTTP API
+
 ![image](https://user-images.githubusercontent.com/110772351/229352442-98e30347-943b-46f7-bb6b-30a162b4ea88.png)
+
 - Download the repo, then open `create.js` to add API of your BOT
 ```
 wget -O create.js https://raw.githubusercontent.com/tunguyen9234/celestia/task/botcheck/create.js
