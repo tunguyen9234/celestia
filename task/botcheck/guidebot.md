@@ -1,7 +1,7 @@
 # Install npm
 ```
-npm install -g npm@8.19.2
-mkdir $HOME/cosmos_haqq_bot && cd $HOME/cosmos_haqq_bot
+npm install -g npm@9.6.3
+mkdir $HOME/command_celestia_bot && cd $HOME/command_celestia_bot
 npm install telegraf nodemon axios start --save
 ```
 # Add Telegram bot
@@ -16,10 +16,10 @@ which screen
 #if result return is "/usr/bin/screen" , screen is installed
 #if not have screen , run the current command to install
 apt install screen
-screen -S telebot
+screen -S celestiabot
 ```
 ```
-cd $HOME/cosmos_haqq_bot
+cd $HOME/command_celestia_bot
 npm i && npm start
 ```
 # check and use bot , go to t.me/command_celestia_bot
