@@ -10,14 +10,13 @@ nvm use 18
 node -v
 npm -v
 ```
-# Install npm
+# create folder 
 ```
-npm install -g npm@9.6.3
 mkdir $HOME/command_celestia_bot && cd $HOME/command_celestia_bot
 npm install telegraf nodemon axios start --save
 ```
 # Add Telegram bot
-- Using [@BotFather](https://t.me/BotFather) to create your BOT, pay attention to HTTP API
+- Using [@BotFather](https://t.me/BotFather) to create new BOT, save HTTP API
 
 ![image](https://user-images.githubusercontent.com/110772351/229352442-98e30347-943b-46f7-bb6b-30a162b4ea88.png)
 
@@ -27,15 +26,11 @@ wget -O create.js https://raw.githubusercontent.com/tunguyen9234/celestia/main/t
 ```
 # Start BOT
 ```
-which screen
-#if result return is "/usr/bin/screen" , screen is installed
-#if not have screen , run the current command to install
-apt install screen
-screen -S celestiabot
-```
-```
+apt install tmux
+tmux new -t celestiabot
 cd $HOME/command_celestia_bot
 npm i && npm start
 ```
-# check and use bot , go to t.me/command_celestia_bot
-- Start the bot with the command /start , then select the node you want to support
+# check and use bot , go to https://t.me/command_celestia_bot
+- Start the bot with the command /start , then select the node type you want to support
+
