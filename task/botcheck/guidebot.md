@@ -30,6 +30,10 @@ apt install tmux
 tmux new -t celestiabot
 cd $HOME/command_celestia_bot
 npm i && npm start
+#to exit a tmux session use CTRL+b then press d
+#to delete tmux session use exit
+#to back tmux session
+tmux attach -t celestiabot
 ```
 # check and use bot , go to https://t.me/command_celestia_bot
 - Start the bot with the command /start , then select the node type you want to support
@@ -38,4 +42,8 @@ npm i && npm start
 
 - you will see interesting things
 
+![image](https://user-images.githubusercontent.com/110772351/229540883-2b31430b-9c20-4a7f-aedf-421261c55d2d.png)
+![image](https://user-images.githubusercontent.com/110772351/229541152-30467b9b-ea4d-490a-8c25-76ee3840da8b.png)
+![image](https://user-images.githubusercontent.com/110772351/229541425-806d513c-1855-42ed-90c9-967f34fa185a.png)
 
+OKOKOK
