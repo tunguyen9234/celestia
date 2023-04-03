@@ -12,7 +12,6 @@ var chainid = "";
 const inlineKeyboardChainsCommands = {
     inline_keyboard: [
         [		
-    { text: "VALIDATOR", callback_data: 'validator' },
     { text: "LIGHT", callback_data: 'light' },
     { text: "BRIDGE", callback_data: 'bridge' },		
         ]
