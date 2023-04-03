@@ -31,9 +31,9 @@ tmux new -t celestiabot
 cd $HOME/command_celestia_bot
 npm i && npm start
 #to exit a tmux session use CTRL+b then press d
-#to delete tmux session use exit
 #to back tmux session
 tmux attach -t celestiabot
+#to delete tmux session use exit
 ```
 # check and use bot , go to https://t.me/command_celestia_bot
 - Start the bot with the command /start , then select the node type you want to support
