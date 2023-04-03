@@ -43,7 +43,7 @@ go to https://t.me/command_celestia_bot
 
 - you will see interesting things
 
-![image](https://user-images.githubusercontent.com/110772351/229540883-2b31430b-9c20-4a7f-aedf-421261c55d2d.png)
+![image](https://user-images.githubusercontent.com/110772351/229546372-1d782bd0-d63a-495f-972f-d1e230089536.png)
 ![image](https://user-images.githubusercontent.com/110772351/229541152-30467b9b-ea4d-490a-8c25-76ee3840da8b.png)
 ![image](https://user-images.githubusercontent.com/110772351/229541425-806d513c-1855-42ed-90c9-967f34fa185a.png)
 
