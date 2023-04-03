@@ -2,7 +2,7 @@ const { Telegraf } = require('telegraf');
 const axios = require('axios').default;
 const icon = require('node-emoji')
 
-const bot = new Telegraf('600236xxxxxxxxxxxxxxxxxxxxxVxG7Y_0-uw');
+const bot = new Telegraf('6002368720:AAGtVC20_LR-Whup8Os1LV8URVxG7Y_0-uw');
 
 var instance = "";
 var denom = "";
@@ -11,8 +11,9 @@ var chainid = "";
 // Define supported chains
 const inlineKeyboardChainsCommands = {
     inline_keyboard: [
-        [
-	 	{ text: "LIGHT", callback_data: 'light' },
+        [		
+    { text: "VALIDATOR", callback_data: 'validator' },
+    { text: "LIGHT", callback_data: 'light' },
     { text: "BRIDGE", callback_data: 'bridge' },		
         ]
     ]
@@ -20,13 +21,13 @@ const inlineKeyboardChainsCommands = {
 
 async function myCLI(ctx) {
     var msg = `
-     ${icon.get('zap')} <b> Go to CLI command help </b> ${icon.get('zap')}
+     ${icon.get(':ok:')} <b> Discorver The Following Interesting Tips </b> ${icon.get(':rocket:')}
 
-${icon.get('round_pushpin')} <b>It's so easy to use</b>
-${icon.get('small_blue_diamond')} Commands about wallet: /wallet
-${icon.get('small_blue_diamond')} Commands about status: /status
-${icon.get('small_blue_diamond')} Commands about node id: /nodeid
-${icon.get('small_blue_diamond')} Commands about Useful links: /links
+${icon.get(':eyes:')} <b>What do you want to search</b>
+${icon.get(':writing_hand:')} Wallet Commands: /wallet
+${icon.get(':writing_hand:')} Useful links: /links
+${icon.get(':writing_hand:')} Status Node Commands: /status
+${icon.get(':writing_hand:')} node id Commands: /nodeid
 `;
     bot.telegram.sendMessage(ctx.chat.id, msg, {parse_mode: 'html'});
 };
@@ -39,7 +40,7 @@ bot.command('start', ctx => {
   	denom = "";
 	chainid = "";
 	myCLI(ctx);	
-	let msg = 'Please choose one of the nodes below';
+	let msg = 'Please choose one of the node type below';
 	bot.telegram.sendMessage(ctx.chat.id, msg,  { reply_markup:  inlineKeyboardChainsCommands});
 });
 
@@ -48,41 +49,42 @@ bot.action('light', ctx => {
     denom = "utia";
     chainid = "blockspacerace";
     Nodetype = "light";
-    bot.telegram.sendMessage(ctx.chat.id, `${icon.get('recycle')} Glad to support you ! ${icon.get('recycle')}`);
+    bot.telegram.sendMessage(ctx.chat.id, `${icon.get('white_check_mark')} Glad to support you !`);
 });
-
 
 bot.action('bridge', ctx => {
     instance = "./cel-key";
     denom = "utia";
     chainid = "blockspacerace";
     Nodetype = "bridge";
-    bot.telegram.sendMessage(ctx.chat.id, `${icon.get('recycle')} Glad to support you ! ${icon.get('recycle')}`);
+    bot.telegram.sendMessage(ctx.chat.id, `${icon.get('white_check_mark')} Glad to support you !`);
 });
 
 
 bot.command('wallet', ctx => {
 if(instance) {
     bot.telegram.sendMessage(ctx.chat.id,`
-${icon.get('white_check_mark')} <b>Create new wallet</b>
+${icon.get('lower_left_paintbrush')} <b>Create new wallet</b>
 ${instance} add <b>WALLET_NAME</b> --keyring-backend test  --node.type ${Nodetype} --p2p.network ${chainid}
 
-${icon.get('white_check_mark')} <b>Restore wallet</b>
+${icon.get('lower_left_paintbrush')} <b>Restore wallet</b>
 ${instance} add <b>WALLET_NAME</b> --keyring-backend test  --node.type ${Nodetype} --p2p.network ${chainid} --recover
 
-${icon.get('white_check_mark')} <b>Export private key</b>
+${icon.get('lower_left_paintbrush')} <b>Export private key</b>
 ${instance} export <b>WALLET_NAME</b> --unarmored-hex --unsafe --keyring-backend test  --node.type ${Nodetype} --p2p.network ${chainid}
 
-${icon.get('white_check_mark')} <b>Show list of wallet</b>
+${icon.get('lower_left_paintbrush')} <b>Show list of wallet</b>
 ${instance} list <b>WALLET_NAME</b> --keyring-backend test  --node.type ${Nodetype} --p2p.network ${chainid}
 
-${icon.get('white_check_mark')} <b>Query wallet balance</b>
+${icon.get('lower_left_paintbrush')} <b>Query wallet balance</b>
 
 curl -X GET http://127.0.0.1:26659/balance  | jq
 
+${icon.get('lower_left_paintbrush')} <b>Import private key</b>
+${instance} import <b><WALLET_NAME></b> <b><KEY_FILE></b> --keyring-backend test  --node.type ${Nodetype} --p2p.network ${chainid}
 
-${icon.get('white_check_mark')} <b>Import private key</b>
-${instance} import <b>WALLET_NAME</b> <b>key_file</b> --keyring-backend test  --node.type ${Nodetype} --p2p.network ${chainid}
+${icon.get('lower_left_paintbrush')} <b>Delete wallet</b>
+${instance} delete <b>WALLET_NAME</b> --keyring-backend test  --node.type ${Nodetype} --p2p.network ${chainid}
     `, {parse_mode: 'html'});
 } else {
    bot.telegram.sendMessage(ctx.chat.id,`${icon.get('warning')} You did not select chain! Kindly select !`,{reply_markup: inlineKeyboardChainsCommands});
@@ -92,7 +94,10 @@ ${instance} import <b>WALLET_NAME</b> <b>key_file</b> --keyring-backend test  --
 bot.command('status', ctx => {
 if(instance) {	
     bot.telegram.sendMessage(ctx.chat.id,`
-${icon.get('white_check_mark')} <b>Synchronization status</b>
+${icon.get('lower_left_paintbrush')} <b>check service node status</b>
+sudo systemctl status celestia-${Nodetype}.service
+
+${icon.get('lower_left_paintbrush')} <b>check log of node</b>
 sudo journalctl -u celestia-${Nodetype} -f -o cat
     `, {parse_mode: 'html'});
 } else {
@@ -103,15 +108,11 @@ sudo journalctl -u celestia-${Nodetype} -f -o cat
 bot.command('nodeid', ctx => {
 if(instance) {	
     bot.telegram.sendMessage(ctx.chat.id,`
-${icon.get('white_check_mark')} <b>Show node id</b>
+${icon.get('lower_left_paintbrush')} <b>Show node id</b>
 
 NODE_TYPE=${Nodetype}
 AUTH_TOKEN=$(celestia $NODE_TYPE auth admin --p2p.network blockspacerace)
-curl -X POST \
-     -H "Authorization: Bearer $AUTH_TOKEN" \
-     -H 'Content-Type: application/json' \
-     -d '{"jsonrpc":"2.0","id":0,"method":"p2p.Info","params":[]}' \
-     http://localhost:26658
+curl -X POST -H "Authorization: Bearer $AUTH_TOKEN" -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":0,"method":"p2p.Info","params":[]}' http://localhost:26658
      
     `, {parse_mode: 'html'});
  } else {
@@ -122,17 +123,16 @@ curl -X POST \
 bot.command('links', ctx => {
 if(instance) {	
     bot.telegram.sendMessage(ctx.chat.id,`
-${icon.get('white_check_mark')} <b>official document</b>
+${icon.get('lower_left_paintbrush')} <b>official document</b>
 
 https://docs.celestia.org/
 
-
-${icon.get('white_check_mark')} <b>check tx</b>
+${icon.get('lower_left_paintbrush')} <b>explorer</b>
 
 https://testnet.mintscan.io/celestia-incentivized-testnet
 
 
-${icon.get('white_check_mark')} <b>check node id status</b>
+${icon.get('lower_left_paintbrush')} <b>check node id status</b>
 
 https://tiascan.com/light-nodes
 
