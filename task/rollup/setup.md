@@ -35,8 +35,11 @@ cat go.mod | grep "github.com/cosmos/cosmos-sdk" | awk '{print $2}' | awk -F: '{
 ```
 - To swap out Tendermint for Rollkit (Suppose SDK version 0.45)
 #Select latest Rollkit SDK version from the [link](https://github.com/rollkit/cosmos-sdk/tags) which is consistent with your SDK version
+
 #If $SDK_VERSION=0.45 => select v0.45.10-rollkit-v0.7.3-no-fraud-proofs
+
 #If $SDK_VERSION=0.46 => select v0.46.7-rollkit-v0.7.3-no-fraud-proofs
+
 ```
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.45.10-rollkit-v0.7.3-no-fraud-proofs
 go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221202214355-3605c597500d
@@ -47,6 +50,7 @@ make install
 
 # Setting Cosmos SDK Rollup
 - Setup some variables
+```
 inst_chain="CHAIN_BINARY_FILE" # Such as, Nibiru is nibid ,Sei is seid, OKP4 is okp4d
 MONIKER_NAME="YOUR_NAME"
 CHAIN_ID="YOUR_CHAIN_ID"  # now , Nibiru is nibiru-itn-1 , Sei is atlantic-2 , OKP4 is okp4-nemeton-1
@@ -57,8 +61,7 @@ CHAINFLAG="--chain-id ${CHAIN_ID}"
 TOKEN_AMOUNT="10000000000000000000000000${DENOM}"
 STAKING_AMOUNT="1000000000${DENOM}"
 HOME_DIR="YOUR_INSTALLED_CHAIN_PATH" # Ex:Nibiru is /root/.nibid ,  Sei is /root/.sei, okp4 is /root/.okp4
-
-
+```
 - reset any existing genesis/chain data
 ```
 $inst_chain tendermint unsafe-reset-all
@@ -91,9 +94,9 @@ $inst_chain collect-gentxs
 ```
 # Start rollup chain
 -  Declare DA_URL
-  - If DA node and Rollup sequencer are on different server
+  #If DA node and Rollup sequencer are on different server
 DA_URL="http://YOUR_PUB_IP:26659"
-   - If DA node and Rollup sequencer are on same server
+  #If DA node and Rollup sequencer are on same server
 DA_URL="http://localhost:26659"
 
 - Create a random Namespace ID for your rollup to post blocks to
@@ -113,3 +116,6 @@ $inst_chain start --rollkit.aggregator true --rollkit.block_time 2.35s --rollkit
 ```
 **and here is the result for Nibiru, sent PFB transaction to Celestia**
 
+![image](https://user-images.githubusercontent.com/110772351/236657219-4e4e3cf9-8655-4a57-9d13-ba97e0d706c6.png)
+
+![image](https://user-images.githubusercontent.com/110772351/236657255-f50f5a9f-1990-4999-9980-e8fd77381f9a.png)
