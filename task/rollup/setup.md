@@ -1,4 +1,6 @@
-# install golang
+***guide for building rollup for Cosmos SDK Appchain L1 to Celestia .The script for this tutorial is built for Celestia's Blockspacerace testnet***
+
+# Cosmos-SDK are written in the Golang programming language , You will need install golang
 ```
 ver="1.20.3"
 cd $HOME
@@ -10,7 +12,7 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
 source ~/.bash_profile
 go version
 ```
-# install celestia light node 
+# install celestia light node (OPTIONAL)
 
 **go to [link](https://docs.celestia.org/nodes/light-node/)
 
@@ -26,8 +28,9 @@ make install
 ```
  
 # Convert repo of Cosmos SDK L1 to rollup
-**go to "YOUR_DOWNLOAD_PATH"
-cd nibiru**
+**go to "YOUR_DOWNLOAD_PATH"**
+
+**ex : cd nibiru**
 
 - Check Cosmos SDK version using by chain
 ```
@@ -105,7 +108,7 @@ NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
 echo $NAMESPACE_ID 
 ```
 - query the DA Layer start height
-#You can check public of Celestia RPC at [here](https://docs.celestia.org/nodes/blockspace-race/) #rpc-endpoints
+( You can check public of Celestia RPC at [here](https://docs.celestia.org/nodes/blockspace-race/) #rpc-endpoints) 
 ```
 DA_BLOCK_HEIGHT=$(curl https://rpc-blockspacerace.pops.one/block | jq -r '.result.block.header.height')
 echo $DA_BLOCK_HEIGHT
