@@ -1,3 +1,6 @@
+
+**Guide for setting up telegram bots that support CLI commands for the Celestia network**
+
 # Install NVM
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
