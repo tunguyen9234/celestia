@@ -53,7 +53,7 @@ make install
 ```
 
 # Setting Cosmos SDK Rollup
-- Setup some variables
+- set variables
 ```
 inst_chain="CHAIN_BINARY_FILE" # Such as, Nibiru is nibid ,Sei is seid, OKP4 is okp4d
 MONIKER_NAME="YOUR_NAME"
