@@ -40,9 +40,9 @@ cat go.mod | grep "github.com/cosmos/cosmos-sdk" | awk '{print $2}' | awk -F: '{
 
 #Select latest Rollkit SDK version from the [link](https://github.com/rollkit/cosmos-sdk/tags) which is consistent with your SDK version
 
-#If $SDK_VERSION=0.45 => select v0.45.10-rollkit-v0.7.3-no-fraud-proofs
+#If SDK version = 0.45 => select v0.45.10-rollkit-v0.7.3-no-fraud-proofs
 
-#If $SDK_VERSION=0.46 => select v0.46.7-rollkit-v0.7.3-no-fraud-proofs
+#If SDK version = 0.46 => select v0.46.7-rollkit-v0.7.3-no-fraud-proofs
 
 ```
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.45.10-rollkit-v0.7.3-no-fraud-proofs
