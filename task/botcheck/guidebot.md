@@ -1,4 +1,3 @@
-
 **Guide for setting up telegram bots that support CLI commands for the Celestia network**
 
 # Install NVM
