@@ -16,6 +16,9 @@ CEL_API="https://leaderboard.celestia.tools/api/v1/nodes/$CEL_NODEID"
 # YOUR node name
 NODE_NAME="Celestia-light"
 
+# YOUR email
+EMAIL="tu99248@gmail.com"
+
 source
 
 # Your public IP
@@ -45,12 +48,12 @@ source $HOME/.bash_profile
 curl -s "$NODE_RPC/status"> /dev/null
 if [[ $? -ne 0 ]]; then
     MSG="Node $NODE_NAME with $ip is stopped!.To check your node."
-    SEND=$(curl -s -X POST -H "Content-Type:multipart/form-data" "https://api.telegram.org/bot$TG_API/sendMessage?chat_id=$TG_ID&text=$MSG"); exit 1
+    sendmail $EMAIL <<< "Subject: $MSG"; exit 1
 fi
 
 if [[ $ID_STATUS = "<95" ]]; then
     MSG=" Node $NODE_NAME with $ip is uptime drop warning !!!.To check your node."
-    SEND=$(curl -s -X POST -H "Content-Type:multipart/form-data" "https://api.telegram.org/bot$TG_API/sendMessage?chat_id=$TG_ID&text=$MSG");
+    sendmail $EMAIL <<< "Subject: $MSG";
 fi
 
 if [[ $LAST_HEAD -ne $das_sampled_chain_head ]]; then
@@ -59,22 +62,22 @@ if [[ $LAST_HEAD -ne $das_sampled_chain_head ]]; then
         DIFF="%2B$DIFF"
     fi
     MSG="Node $NODE_NAME with $ip has missed head : $DIFF%0A($LAST_HEAD -> $das_sampled_chain_head)"
-    SEND=$(curl -s -X POST -H "Content-Type:multipart/form-data" "https://api.telegram.org/bot$TG_API/sendMessage?chat_id=$TG_ID&text=$MSG");
+    sendmail $EMAIL <<< "Subject: $MSG";
 fi
 
 if [[ $das_network_head = "$das_network_head" ]]; then
     MSG="Node $NODE_NAME with $ip das_network_head $das_network_head "
-    SEND=$(curl -s -X POST -H "Content-Type:multipart/form-data" "https://api.telegram.org/bot$TG_API/sendMessage?chat_id=$TG_ID&text=$MSG");
+    sendmail $EMAIL <<< "Subject: $MSG";
 fi
 
 if [[ $DAS = "$DAS" ]]; then
     MSG=" Node $NODE_NAME with $ip is accomplished das_total_sampled_headers $DAS"
-    SEND=$(curl -s -X POST -H "Content-Type:multipart/form-data" "https://api.telegram.org/bot$TG_API/sendMessage?chat_id=$TG_ID&text=$MSG");
+    sendmail $EMAIL <<< "Subject: $MSG";
 fi
 
 if [[ $PFB = "$PFB" ]]; then
     MSG="Node $NODE_NAME with $ip is submited PFB transactions $PFB"
-    SEND=$(curl -s -X POST -H "Content-Type:multipart/form-data" "https://api.telegram.org/bot$TG_API/sendMessage?chat_id=$TG_ID&text=$MSG");
+    sendmail $EMAIL <<< "Subject: $MSG";
 
 fi
 
@@ -82,4 +85,4 @@ touch $LOG_SESSION
 echo "Subject: List of login session to your server" > $LOG_SESSION
 last -s today >> $LOG_SESSION
 MSG="Last login session in today: `last -s today | awk '{print $3}' |grep ^[0-9] | tr '\t' ' '`"
-SEND=$(curl -s -X POST -H "Content-Type:multipart/form-data" "https://api.telegram.org/bot$TG_API/sendMessage?chat_id=$TG_ID&text=$MSG");
+sendmail $EMAIL < $LOG_SESSION;
