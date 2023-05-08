@@ -14,7 +14,7 @@ go version
 ```
 # install celestia light node (OPTIONAL)
 
-**go to [link](https://docs.celestia.org/nodes/light-node/)
+***go to [link](https://docs.celestia.org/nodes/light-node/)***
 
 # Download repo Cosmos SDK L1
 
