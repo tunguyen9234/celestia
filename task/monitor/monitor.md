@@ -7,9 +7,10 @@ sudo apt install sendmail-cf
 sed -i.bak -e "s/\(^127\.0\.0\.1 .*\)/\1 `hostname`/" /etc/hosts
 ```
 
-# Install script of alerting
+# Install script of monitoring
 ```
 mkdir $HOME/.monitor/ && cd $HOME/.monitor/
+wget https://raw.githubusercontent.com/tunguyen9234/celestia/main/task/monitor/monitor.sh
 
 ```
 
@@ -25,7 +26,7 @@ if alert and your node are in one machine YOUR_RPC="http://127.0.0.1:YOUR_RPC_PO
 example : CEL_NODEID="12D3KooWS47idXvbzQurhQezdnGpAvNniQFfcYEviXSEZeQq2e4m"
 
 # name the alert string
-example : YOUR_NODE_NAME="celestia-light"
+example : YOUR_NODE_NAME="Celestia-light"
 
 # set your_email 
 example : YOUR_EMAIL="tu99248@gmail.com"
@@ -40,4 +41,5 @@ crontab -e -u root
 
 - Stop your node, then check alerting on your email
 
+![image](https://user-images.githubusercontent.com/110772351/236840356-fdd69399-ca81-4258-95c3-8b8cb8ad5ba0.png)
 
