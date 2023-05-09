@@ -17,7 +17,7 @@ cd
 apt install tmux
 tmux new -t wed_pfb
 cd $HOME/wed_pfb
-python3 web_server.py
+python3 wed_server.py
 #ctrl+a+d
 ```
 # visit the wed and submit PFB
