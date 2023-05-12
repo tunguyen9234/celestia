@@ -45,7 +45,7 @@ echo 'LAST_HEAD="'"$das_network_head"'"' >> $LOG_FILE
 
 
 source $HOME/.bash_profile
-curl -s "$NODE_RPC/status"> /dev/null
+curl -s "$NODE_RPC"> /dev/null
 if [[ $? -ne 0 ]]; then
     MSG="Node $NODE_NAME with $ip is stopped!.To check your node."
     sendmail $EMAIL <<< "Subject: $MSG"; exit 1
@@ -53,15 +53,6 @@ fi
 
 if [[ $ID_STATUS = "<95" ]]; then
     MSG=" Node $NODE_NAME with $ip is uptime drop warning !!!.To check your node."
-    sendmail $EMAIL <<< "Subject: $MSG";
-fi
-
-if [[ $LAST_HEAD -ne $das_sampled_chain_head ]]; then
-    DIFF=$(($das_sampled_chain_head - $LAST_HEAD))
-    if [[ $DIFF -gt 0 ]]; then
-        DIFF="%2B$DIFF"
-    fi
-    MSG="Node $NODE_NAME with $ip has missed head : $DIFF%0A($LAST_HEAD -> $das_sampled_chain_head)"
     sendmail $EMAIL <<< "Subject: $MSG";
 fi
 
